@@ -17,17 +17,16 @@ import { useContext } from "react";
 
 function App() {
   const { token } = useContext(UserContext)
+  console.log(token)
   return (
       
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage/>} />
-         <Route path="/profile" element={
-          token ? <ProfilePage /> : <Navigate to="/login"/>
-        } />
+        <Route path="register" element={token? <RegisterPage /> : <Navigate to="/"/> } />
+        <Route path="login" element={!token? <LoginPage/> : <Navigate to="/"/>} />
+         <Route path="/profile" element={!token ? <ProfilePage /> : <Navigate to="/login"/>} />
 
          <Route path="/pizza/:id" element={<PizzaPage />} />
         
