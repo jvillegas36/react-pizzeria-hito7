@@ -8,7 +8,7 @@ const CardPizza = (props) => {
 
   const handleVerMas = () => {
     const id = props.id;
-    selectPizza(id) // guarda el ID "P01" en el contexto
+    selectPizza(id) 
     // console.log(props.id)
     navigate(`/pizza/${id}`);
   };
@@ -21,7 +21,6 @@ const CardPizza = (props) => {
         <hr />
         Ingredientes:
         <div className="card-text h6 fw-light mt-2">
-          {/* 🍕{props.ingredients.join(", ")} */}
           <ul className="ulFormat">
             {props.ingredients.map(ing =>
               <li className="text-start text-capitalize" key={ing}>
@@ -31,7 +30,6 @@ const CardPizza = (props) => {
           )}
           </ul>
         </div>
-        {/* <hr /> */}
         <p className="card-text h5 ">
           Precio: ${Intl.NumberFormat().format(props.price)}
         </p>
