@@ -9,7 +9,6 @@ const UserProvider = ({ children }) => {
     setToken(false);
   };
 
-//   console.log(token);
   return (
     <UserContext.Provider value={{ token, setToken, logout }}>
       {children}
