@@ -1,0 +1,67 @@
+
+body {
+  margin: 0;
+}
+
+/* footer */
+footer {
+  background-color: #1a1a1a;
+}
+
+
+/* header */
+.header-cabecera {
+  height: 30vh;
+  color: white;
+  background-image: url("/src/assets/img/Header.jpg");
+  background-size: cover;
+}
+
+.header-content {
+  background-color: rgba(15, 15, 15, 0.6);
+  font-size: 1.4rem;
+  font-stretch: expanded;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px #000;
+}
+
+.header-hr{
+  width: 80%;
+}
+
+/* Not Found */
+
+#container-noPage{
+  background: linear-gradient(to right,rgb(123, 125, 255), rgb(196,0,0));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notPage{
+  color:#fff;
+  font-size: 15rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sub-notPage{
+  color:#fff;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.art-notPage{
+  width: 80%;
+  color:#fff;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
