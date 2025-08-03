@@ -1,10 +1,34 @@
 import React, { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
+import Swal from "sweetalert2";
 
 const CartPage = () => {
-  const {carro,total,sumaPizza, restaPizza} = useContext(CartContext)
-  const { token } = useContext(UserContext)
+  const { carro, total, sumaPizza, restaPizza, limpiarCarro } =
+    useContext(CartContext);
+  const { token, createCheckout } = useContext(UserContext);
+
+  const handlePagar = async () => {
+    const pedido = {
+      items: carro.map((p) => ({
+        id: p.id,
+        cantidad: p.quantity,
+      })),
+      total,
+    };
+
+    const exito = await createCheckout(pedido);
+
+    if (exito) {
+      Swal.fire({
+        title: "¡Pedido realizado con éxito!",
+        icon: "success",
+        draggable: true,
+      });
+
+      limpiarCarro();
+    }
+  };
 
   return (
     <div className="my-3 card container ">
@@ -43,7 +67,13 @@ const CartPage = () => {
           <h2 className="text-start fw-bold">
             Total : $ {Intl.NumberFormat().format(total)}
           </h2>
-          <button className="my-5 col-3 btn btn-primary fw-bold" disabled={!token}>Pagar</button>
+          <button
+            className="my-5 col-3 btn btn-primary fw-bold"
+            onClick={handlePagar}
+            disabled={!token || total === 0}
+          >
+            Pagar
+          </button>
         </div>
       </div>
     </div>

@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [passConfirm, setpassConfirm] = useState("");
 
-  const validarDatos = (e) => {
+  const { handleRegister } = useContext(UserContext)
+  const navigate= useNavigate()
+
+
+  const validarDatos = async (e) => {
     e.preventDefault();
     if (!email.trim() || !pass.trim() || !passConfirm.trim()) {
       Swal.fire({
@@ -30,17 +36,22 @@ const RegisterPage = () => {
       });
       return
     } else {
-      Swal.fire({
-        title: "Se registro correctamente!",
-        icon: "success",
-        draggable: true,
-      });
-      setEmail('');
-      setPass('');
-      setpassConfirm('');
-      // e.currentTarget.reset();
+
+      const success = await handleRegister(email, pass);
+      if (success) {  
+        Swal.fire({
+          title: "Se registro correctamente!",
+          icon: "success",
+          draggable: true,
+        });
+        setEmail('');
+        setPass('');
+        setpassConfirm('');
+        navigate("/profile");
+     } 
       return
     }
+    
   };
 
   return (

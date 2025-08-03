@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { UserContext } from "../context/UserContext";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const { handleLogin } = useContext(UserContext);
+  const navigate = useNavigate();
 
-  const validarDatos = (e) => {
+  const validarDatos = async (e) => {
     e.preventDefault();
     if (!email.trim() || !pass.trim()) {
       Swal.fire({
@@ -21,17 +26,35 @@ const LoginPage = () => {
         text: "Contraseña debe ser contener 6 caracter como minimo.",
       });
       return
-    } else {     
+    }   
+
+          const success = await handleLogin(email, pass);
+
+    if (success) {
       Swal.fire({
-        title: "Ingreso exito!</br> Vamos a comer Pizza!!!",
         icon: "success",
-        draggable: true,
+        title: "Ingreso exitoso!",
+        html: "Vamos a comer Pizza!!!",
+        timer: 1500,
+        showConfirmButton: false,
       });
+
+      setEmail("");
+      setPass("");
+
+      navigate("/"); 
+
+      // Swal.fire({
+      //   title: "Ingreso exito!</br> Vamos a comer Pizza!!!",
+      //   icon: "success",
+      //   draggable: true,
+      // });
             
-      setEmail('');
-      setPass('');
-      return
-      // e.currentTarget.reset();
+      // setEmail('');
+      // setPass('');
+
+      
+      // return
     }
     
 

@@ -26,7 +26,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={!token? <RegisterPage /> : <Navigate to="/"/> } />
         <Route path="/login" element={!token? <LoginPage/> : <Navigate to="/"/>} />
-         <Route path="/profile" element={!token ? <ProfilePage /> : <Navigate to="/login"/>} />
+         <Route path="/profile" element={token ? <ProfilePage /> : <Navigate to="/login"/>} />
 
          <Route path="/pizza/:id" element={<PizzaPage />} />
         

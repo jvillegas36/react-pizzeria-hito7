@@ -13,8 +13,7 @@ const Navbar = () => {
     logout();
     navigate("/login");
   };
-  // const total = 25000;
-  // const token = false;
+
   return (
     <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
       <div className="container-fluid">
@@ -40,7 +39,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            {token == true ? (
+            {token && token !== "" ?  (
               <>
                 <li className="nav-item">
                   <Link
